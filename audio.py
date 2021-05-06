@@ -1,17 +1,22 @@
 from tkinter import *
+from tkinter.messagebox import *
 from playsound import playsound
 from gtts import gTTS
 
 root=Tk()
 root.title("Text-to-Speech Converter")
-root.geometry("400x300+400+250")
+root.geometry("400x300+450+200")
 
 
 def convert():
-    message=entTxt.get()
-    speech=gTTS(text=message,lang='en')
-    speech.save('text_to_speech.mp3')
-    playsound('text_to_speech.mp3')
+    try:
+        message=entTxt.get()
+        speech=gTTS(text=message,lang='en')
+        speech.save('text_to_speech.mp3')
+        playsound('text_to_speech.mp3')
+    except AssertionError:
+        showerror("Empty Input","Enter some text to run")
+        
     
     
 
